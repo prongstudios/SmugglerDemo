@@ -4,4 +4,4 @@ build: main.cpp
 clean: 
 	rm -f Smuggler
 latest:
-	tar -c --exclude '.git' /Users/will/ProgrammingFun/CPP/SDL/SmuggleDemo | gzip > /Users/will/ProgrammingFun/CPP/SDL/latest.tar.gz
+	tar -c --exclude '.git' /Users/will/ProgrammingFun/CPP/SDL/SmuggleDemo | gzip > /Users/will/ProgrammingFun/CPP/SDL/latest.tar.gz && scp /Users/will/ProgrammingFun/CPP/SDL/latest.tar.gz root@derbserv.org:/home/prongstu/public_html/smuggler/latest.tar.gz

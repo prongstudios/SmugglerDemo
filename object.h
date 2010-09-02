@@ -1,17 +1,21 @@
+#include "SDL.h"
 #include <string>
-
+#include <SDL_image.h>
 class Object
 {
 private:
 	SDL_Rect coords;
-	SDL_Surface *objectIMG;
+	SDL_Surface *surface;
+	std::string filename;
 	
 public:
 	Object();
-	int x(int newX);
-	int y(int newY);
-	int boxsize(int newBox);
-	SDL_Surface IMG();
+	void x(int newX);
+	void y(int newY);
+	void boxsize(int newBox);
+	void file(std::string File);
+	SDL_Rect rect();
+	SDL_Surface image();
 };
 
 Object::Object()
@@ -25,23 +29,37 @@ Object::Object()
 
 
 
-int Object::x(int newX)
+void Object::x(int newX)
 {
 	coords.x=newX;
 }
 
-int Object::y(int newY)
+void Object::y(int newY)
 {
 	coords.y=newY;
 }
 
-int Object::boxsize(int newBox)
+void Object::file(std::string File)
+{
+	filename = File;
+}
+
+void Object::boxsize(int newBox)
 {
 	coords.w=newBox;
 	coords.h=newBox;
 }
 
-SDL_Surface Object::IMG()
+SDL_Surface Object::image()
 {
-	return *objectIMG;
+	SDL_Surface *oldface;
+	oldface = IMG_Load(filename.c_str());
+	surface = SDL_DisplayFormatAlpha(oldface);
+	SDL_FreeSurface(oldface);
+	return *surface;
+}
+
+SDL_Rect Object::rect()
+{
+	return coords;
 }

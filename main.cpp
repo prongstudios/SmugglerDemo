@@ -2,7 +2,9 @@
 #include "SDL_image.h"
 #include "SDL_ttf.h"
 #include "timing.h"
+#include "object.h"
 
+#include <string>
 
 
 // Game constraints
@@ -28,8 +30,13 @@ int main(int argc, char *argv[])
 	SDL_Surface *background;
 	SDL_Surface *player;
 	
-	// Object crate("crate.png");
-
+  	Object crate;
+	crate.x(100);
+	crate.y(100);
+	crate.boxsize(100);
+	crate.file("crate.png");
+	
+	
 	SDL_Event event;
 
 	SDL_Rect player_coords;
@@ -130,9 +137,6 @@ int main(int argc, char *argv[])
 		{
 			player_frame.y = 400;
 		}
-
-		
-		
 		if (yvel == movementspeed)
 		{
 			player_frame.x = 0;
@@ -141,8 +145,6 @@ int main(int argc, char *argv[])
 		{
 			player_frame.x = 200;
 		}
-		
-		
 		if (xvel == movementspeed)
 		{
 			player_frame.x = 400;
@@ -151,12 +153,6 @@ int main(int argc, char *argv[])
 		{
 			player_frame.x=600;
 		}
-		
-		
-		
-		
-		
-		
 		if (walkFrames > (walkFrameInterval*2)-1)
 		{
 			walkFrames = 0;
@@ -165,10 +161,11 @@ int main(int argc, char *argv[])
 		{
 			player_frame.y = 0;
 		}
-		
+
 		// printf("Frames per second: %d\n", 1000/fps.get_ticks());
 		SDL_BlitSurface(background, NULL, screen, NULL);
 		SDL_BlitSurface(player, &player_frame, screen, &player_coords);
+		SDL_BlitSurface(&crate.image(), NULL, screen, &crate.rect());
 		SDL_Flip(screen);
 		printf("Frames per second: %d\n", 1000/fps.get_ticks());
 	if(fps.get_ticks() < 1000 / FPS)
