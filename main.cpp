@@ -120,14 +120,34 @@ int main(int argc, char *argv[])
 		player_coords.y+=yvel;
 		
 		walkFrames +=1;
-		if (walkFrames < walkFrameInterval)
+		
+		
+		if ((walkFrames < walkFrameInterval) && (yvel == movementspeed)) 
 		{
 			player_frame.y = 200;
+			player_frame.x = 0;
 		}
-		if ((walkFrames < walkFrameInterval*2) && (walkFrames > walkFrameInterval))
+		if ((walkFrames < walkFrameInterval*2) && (walkFrames > walkFrameInterval) && (yvel == movementspeed))
 		{
 			player_frame.y = 400;
+			player_frame.x = 0;
 		}
+		if ((walkFrames < walkFrameInterval) && (yvel == -movementspeed))
+		{
+			player_frame.x = 200;
+			player_frame.y = 200;
+		}
+		if ((walkFrames < walkFrameInterval*2) && (walkFrames > walkFrameInterval) && (yvel == -movementspeed))
+		{
+			player_frame.x = 200;
+			player_frame.y = 400;
+		}		
+		
+		
+		
+		
+		
+		
 		if (walkFrames > (walkFrameInterval*2)-1)
 		{
 			walkFrames = 0;
