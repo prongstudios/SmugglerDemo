@@ -2,7 +2,7 @@
 #include "SDL_image.h"
 #include "SDL_ttf.h"
 #include "timing.h"
-#include "object.h"
+
 
 
 // Game constraints
@@ -122,26 +122,35 @@ int main(int argc, char *argv[])
 		walkFrames +=1;
 		
 		
-		if ((walkFrames < walkFrameInterval) && (yvel == movementspeed)) 
+		if (walkFrames < walkFrameInterval)
 		{
 			player_frame.y = 200;
-			player_frame.x = 0;
 		}
-		if ((walkFrames < walkFrameInterval*2) && (walkFrames > walkFrameInterval) && (yvel == movementspeed))
+		if ((walkFrames < walkFrameInterval*2) && (walkFrames > walkFrameInterval))
 		{
 			player_frame.y = 400;
+		}
+
+		
+		
+		if (yvel == movementspeed)
+		{
 			player_frame.x = 0;
 		}
-		if ((walkFrames < walkFrameInterval) && (yvel == -movementspeed))
+		if (yvel == -movementspeed)
 		{
 			player_frame.x = 200;
-			player_frame.y = 200;
 		}
-		if ((walkFrames < walkFrameInterval*2) && (walkFrames > walkFrameInterval) && (yvel == -movementspeed))
+		
+		
+		if (xvel == movementspeed)
 		{
-			player_frame.x = 200;
-			player_frame.y = 400;
-		}		
+			player_frame.x = 400;
+		}
+		if (xvel == -movementspeed)
+		{
+			player_frame.x=600;
+		}
 		
 		
 		
