@@ -20,13 +20,16 @@ const int walkFrameInterval = 10;
 
 int main(int argc, char *argv[])
 {
+	SDL_Surface *screen;
+	SDL_Init(SDL_INIT_EVERYTHING);
+    screen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE);
+
 	bool quit = false;
 	// Rendering surfaces
 
 	SDL_Surface *preBackground;
 	SDL_Surface *prePlayer;
 	
-	SDL_Surface *screen;
 	SDL_Surface *background;
 	SDL_Surface *player;
 	
@@ -34,7 +37,7 @@ int main(int argc, char *argv[])
 	crate.x(100);
 	crate.y(100);
 	crate.boxsize(100);
-	crate.file("crate.png");
+	crate.load("crate.png");
 	
 	
 	SDL_Event event;
@@ -59,8 +62,7 @@ int main(int argc, char *argv[])
 	
 	Timer fps;
 	
-    SDL_Init(SDL_INIT_EVERYTHING);
-    screen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE);
+
     preBackground = IMG_Load("backimage.png");
 	prePlayer = IMG_Load("character.png");
 	background = SDL_DisplayFormat(preBackground);

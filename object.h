@@ -13,7 +13,7 @@ public:
 	void x(int newX);
 	void y(int newY);
 	void boxsize(int newBox);
-	void file(std::string File);
+	void load(std::string filename);
 	SDL_Rect rect();
 	SDL_Surface image();
 };
@@ -39,9 +39,12 @@ void Object::y(int newY)
 	coords.y=newY;
 }
 
-void Object::file(std::string File)
+void Object::load(std::string filename)
 {
-	filename = File;
+	SDL_Surface *oldface;
+	oldface = IMG_Load(filename.c_str());
+	surface = SDL_DisplayFormatAlpha(oldface);
+	SDL_FreeSurface(oldface);
 }
 
 void Object::boxsize(int newBox)
@@ -50,12 +53,11 @@ void Object::boxsize(int newBox)
 	coords.h=newBox;
 }
 
+
+
+
 SDL_Surface Object::image()
 {
-	SDL_Surface *oldface;
-	oldface = IMG_Load(filename.c_str());
-	surface = SDL_DisplayFormatAlpha(oldface);
-	SDL_FreeSurface(oldface);
 	return *surface;
 }
 
