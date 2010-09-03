@@ -6,4 +6,4 @@ clean:
 latest:
 	tar -c --exclude '.git' /Users/will/ProgrammingFun/CPP/SDL/SmuggleDemo | gzip > /Users/will/ProgrammingFun/CPP/SDL/latest.tar.gz && scp /Users/will/ProgrammingFun/CPP/SDL/latest.tar.gz root@derbserv.org:/home/prongstu/public_html/smuggler/latest.tar.gz
 windows:
-  mingw32-c++ main.cpp -Xlinker -lmingw32 -lSDLmain -lSDL -lSDL_image -o Smuggler.exe
+	mingw32-c++ main.cpp -Xlinker -lmingw32 -lSDLmain -lSDL -lSDL_image -o Smuggler.exe
