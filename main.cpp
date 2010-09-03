@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 	SDL_Surface *screen;
 	SDL_Init(SDL_INIT_EVERYTHING);
     screen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE);
-
+	SDL_WM_SetCaption("Smuggler Demo", "Smuggler Demo");
 	bool quit = false;
 	// Rendering surfaces
 
@@ -99,6 +99,7 @@ int main(int argc, char *argv[])
 						quit=true;
 						break;
 					default:
+					// do nothing
 						break;
 				}
 			}
@@ -121,8 +122,13 @@ int main(int argc, char *argv[])
 						quit=true;
 						break;
 					default:
+					// Do nothing
 						break;
 				}
+			}
+			if (event.type == SDL_QUIT)
+			{
+				quit = true;
 			}
 		}
 		player_coords.x+=xvel;
