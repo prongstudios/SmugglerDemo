@@ -6,6 +6,7 @@
 #include "object.cpp"
 #include "player.h"
 #include "player.cpp"
+#include "animate.cpp"
 #include <string>
 
 
@@ -36,8 +37,7 @@ int main(int argc, char *argv[])
 	
 	Player player1("character.png");
 	
-	
-  	Object crate;
+	Object crate;
 	crate.x(100);
 	crate.y(100);
 	crate.boxsize(100);
@@ -46,13 +46,13 @@ int main(int argc, char *argv[])
 	
 	SDL_Event event;
 	
-	int walkFrames =40;
 	
 	
 	int xvel = 0, yvel = 0;
 	
 	
 	Timer fps;
+	int walkFrames = 2;
 	
 
     preBackground = IMG_Load("backimage.png");
@@ -121,45 +121,7 @@ int main(int argc, char *argv[])
 				quit = true;
 			}
 		}
-		player1.coordX(xvel);
-		player1.coordY(yvel);
-		
-		walkFrames +=1;
-		
-		
-		if (walkFrames < walkFrameInterval)
-		{
-			player1.frameY(200);
-		}
-		if ((walkFrames < walkFrameInterval*2) && (walkFrames > walkFrameInterval))
-		{
-			player1.frameY(400);
-		}
-		if (yvel == movementspeed)
-		{
-			player1.frameX(0);
-		}
-		if (yvel == -movementspeed)
-		{
-			player1.frameX(200);
-		}
-		if (xvel == movementspeed)
-		{
-			player1.frameX(400);
-		}
-		if (xvel == -movementspeed)
-		{
-			player1.frameX(600);
-		}
-		if (walkFrames > (walkFrameInterval*2)-1)
-		{
-			walkFrames = 0;
-		}
-		if ((xvel==0) && (yvel == 0))
-		{
-			player1.frameY(0);
-		}
-
+		walkFrames=animate(xvel, yvel, movementspeed, walkFrames, walkFrameInterval, player1);
 		SDL_BlitSurface(background, NULL, screen, NULL);
 		// SDL_BlitSurface(player, &player_frame, screen, &player_coords);
 		
