@@ -3,7 +3,9 @@
 #include "SDL_ttf.h"
 #include "timing.h"
 #include "object.h"
-
+#include "object.cpp"
+#include "player.h"
+#include "player.cpp"
 #include <string>
 
 
@@ -28,10 +30,12 @@ int main(int argc, char *argv[])
 	// Rendering surfaces
 
 	SDL_Surface *preBackground;
-	SDL_Surface *prePlayer;
 	
 	SDL_Surface *background;
-	SDL_Surface *player;
+	
+	
+	Player player1("character.png");
+	
 	
   	Object crate;
 	crate.x(100);
@@ -41,18 +45,6 @@ int main(int argc, char *argv[])
 	
 	
 	SDL_Event event;
-
-	SDL_Rect player_coords;
-    player_coords.x=500;
-	player_coords.y=200;
-	player_coords.w=100;
-	player_coords.h=100;
-	
-	SDL_Rect player_frame;
-	player_frame.x = 0;
-	player_frame.y = 0;
-	player_frame.w = 200;
-	player_frame.h = 200;
 	
 	int walkFrames =40;
 	
@@ -64,11 +56,9 @@ int main(int argc, char *argv[])
 	
 
     preBackground = IMG_Load("backimage.png");
-	prePlayer = IMG_Load("character.png");
+
 	background = SDL_DisplayFormat(preBackground);
-	player = SDL_DisplayFormatAlpha(prePlayer);
 	SDL_FreeSurface(preBackground);
-	SDL_FreeSurface(prePlayer);
 
 	while(!quit){
 		
@@ -131,35 +121,35 @@ int main(int argc, char *argv[])
 				quit = true;
 			}
 		}
-		player_coords.x+=xvel;
-		player_coords.y+=yvel;
+		player1.coordX(xvel);
+		player1.coordY(yvel);
 		
 		walkFrames +=1;
 		
 		
 		if (walkFrames < walkFrameInterval)
 		{
-			player_frame.y = 200;
+			player1.frameY(200);
 		}
 		if ((walkFrames < walkFrameInterval*2) && (walkFrames > walkFrameInterval))
 		{
-			player_frame.y = 400;
+			player1.frameY(400);
 		}
 		if (yvel == movementspeed)
 		{
-			player_frame.x = 0;
+			player1.frameX(0);
 		}
 		if (yvel == -movementspeed)
 		{
-			player_frame.x = 200;
+			player1.frameX(200);
 		}
 		if (xvel == movementspeed)
 		{
-			player_frame.x = 400;
+			player1.frameX(400);
 		}
 		if (xvel == -movementspeed)
 		{
-			player_frame.x=600;
+			player1.frameX(600);
 		}
 		if (walkFrames > (walkFrameInterval*2)-1)
 		{
@@ -167,14 +157,18 @@ int main(int argc, char *argv[])
 		}
 		if ((xvel==0) && (yvel == 0))
 		{
-			player_frame.y = 0;
+			player1.frameY(0);
 		}
 
-		// printf("Frames per second: %d\n", 1000/fps.get_ticks());
 		SDL_BlitSurface(background, NULL, screen, NULL);
-		SDL_BlitSurface(player, &player_frame, screen, &player_coords);
+		// SDL_BlitSurface(player, &player_frame, screen, &player_coords);
+		
+		
+		SDL_BlitSurface(&player1.image(), &player1.frame(), screen, &player1.location());
+		
 		SDL_BlitSurface(&crate.image(), NULL, screen, &crate.rect());
 		SDL_Flip(screen);
+
 		printf("Frames per second: %d\n", 1000/fps.get_ticks());
 	if(fps.get_ticks() < 1000 / FPS)
 	{
