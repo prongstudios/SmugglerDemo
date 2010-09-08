@@ -8,12 +8,12 @@ int animate(int xvel, int yvel, int movementspeed, int walkFrames, int walkFrame
 
 	if (walkFrames < walkFrameInterval)
 	{
-		object.frameY(200);
+		object.frameY(100);
 	}
 	
 	if ((walkFrames < walkFrameInterval*2) && (walkFrames > walkFrameInterval))
 	{
-		object.frameY(400);
+		object.frameY(200);
 	}
 	
 	if (yvel == movementspeed)
@@ -22,15 +22,15 @@ int animate(int xvel, int yvel, int movementspeed, int walkFrames, int walkFrame
 	}
 	if (yvel == -movementspeed)
 	{
-		object.frameX(200);
+		object.frameX(100);
 	}
 	if (xvel == movementspeed)
 	{
-		object.frameX(400);
+		object.frameX(200);
 	}
 	if (xvel == -movementspeed)
 	{
-		object.frameX(600);
+		object.frameX(300);
 	}
 	if (walkFrames == (walkFrameInterval*2))
 	{

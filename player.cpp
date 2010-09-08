@@ -10,8 +10,8 @@ Player::Player(std::string filename)
 	coords.h=100;
 	frames.x=0;
 	frames.y=0;
-	frames.w=200;
-	frames.h=200;
+	frames.w=100;
+	frames.h=100;
 }
 
 void Player::coordX(int X)

@@ -7,6 +7,7 @@
 #include "player.h"
 #include "player.cpp"
 #include "animate.cpp"
+#include "mapmaker.cpp"
 #include <string>
 
 
@@ -37,12 +38,13 @@ int main(int argc, char *argv[])
 	
 	Player player1("character.png");
 	
-	Object crate;
-	crate.x(100);
-	crate.y(100);
-	crate.boxsize(100);
-	crate.load("crate.png");
+
+	SDL_Rect singleTile;
 	
+	singleTile.x = 0;
+	singleTile.y = 0;
+	singleTile.h = 100;
+	singleTile.w = 100;
 	
 	SDL_Event event;
 	
@@ -54,7 +56,9 @@ int main(int argc, char *argv[])
 	Timer fps;
 	int walkFrames = 2;
 	
-
+	SDL_Surface *overlay;
+	overlay = &map();
+	
     preBackground = IMG_Load("backimage.png");
 
 	background = SDL_DisplayFormat(preBackground);
@@ -127,8 +131,8 @@ int main(int argc, char *argv[])
 		
 		
 		SDL_BlitSurface(&player1.image(), &player1.frame(), screen, &player1.location());
-		
-		SDL_BlitSurface(&crate.image(), NULL, screen, &crate.rect());
+		SDL_BlitSurface(overlay, NULL, screen, NULL);
+		// SDL_BlitSurface(&crate.image(), &singleTile, screen, &crate.rect());
 		SDL_Flip(screen);
 
 		printf("Frames per second: %d\n", 1000/fps.get_ticks());
