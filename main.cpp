@@ -53,11 +53,10 @@ int main(int argc, char *argv[])
 	int xvel = 0, yvel = 0;
 	
 	
+	SDL_Surface *overlay = &map();
+	
 	Timer fps;
 	int walkFrames = 2;
-	
-	SDL_Surface *overlay;
-	overlay = &map();
 	
     preBackground = IMG_Load("backimage.png");
 
