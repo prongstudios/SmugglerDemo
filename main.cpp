@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 {
 	SDL_Surface *screen;
 	SDL_Init(SDL_INIT_EVERYTHING);
-    screen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE);
+    screen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_HWSURFACE);
 	SDL_WM_SetCaption("Smuggler Demo", "Smuggler Demo");
 	bool quit = false;
 	// Rendering surfaces
@@ -127,12 +127,9 @@ int main(int argc, char *argv[])
 		}
 		walkFrames=animate(xvel, yvel, movementspeed, walkFrames, walkFrameInterval, player1);
 		SDL_BlitSurface(background, NULL, screen, NULL);
-		// SDL_BlitSurface(player, &player_frame, screen, &player_coords);
-		
 		
 		SDL_BlitSurface(&player1.image(), &player1.frame(), screen, &player1.location());
 		SDL_BlitSurface(overlay, NULL, screen, NULL);
-		// SDL_BlitSurface(&crate.image(), &singleTile, screen, &crate.rect());
 		SDL_Flip(screen);
 
 		printf("Frames per second: %d\n", 1000/fps.get_ticks());

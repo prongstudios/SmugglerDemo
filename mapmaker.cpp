@@ -25,6 +25,11 @@ SDL_Surface map()
 	crate.boxsize(100);
 	crate.load("spritemap.png");
 	
+
+	mapSurface = IMG_Load("black.png");
+	//SDL_BlitSurface(&crate.image(), NULL, mapSurface, NULL);
+	// mapSurface = &crate.image();
+	
 	for (int x =0; x <8; x++)
 	{
 		
@@ -33,17 +38,22 @@ SDL_Surface map()
 		{
 			// return mapArray[x][y]
 			
-			cout << mapArray[x][y] << " ";
 			int tilez = mapArray[x][y];
-			SDL_Rect temp = tilePicker(tilez);
+			SDL_Rect wat = tilePicker(tilez);
+			SDL_Rect wtf = crate.rect();
+			cout << "Tile: " << mapArray[x][y] << " Source: (" << wat.x << "," << wat.y << ") Dest: (" << wtf.x << "," << wtf.y << ") ";
+			SDL_BlitSurface(&crate.image(), &tilePicker(tilez), mapSurface, &crate.rect());
 			
-			SDL_BlitSurface(&crate.image(), &temp, mapSurface, &crate.rect());
 			
-			blocky+=100;
-			crate.y(blocky);
+			// SDL_BlitSurface(&crate.image(), NULL, mapSurface, NULL);
+			
+			blockx+=100;
+			crate.x(blockx);
 		};
 		cout << "\n";
-		blockx+=100;
+		blocky+=100;
+		crate.y(blocky);
+		blockx=0;
 		crate.x(blockx);
 	};
 	return *mapSurface;
