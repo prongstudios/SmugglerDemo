@@ -28,11 +28,15 @@ SDL_Surface map()
 	crate.boxsize(100);
 	crate.load("spritemap.png");
 	
-	Uint8 r = 255, g = 255, b =255, a = SDL_ALPHA_TRANSPARENT;
+	Uint8 r = 0, g = 0, b =0, a = SDL_ALPHA_TRANSPARENT;
 	SDL_PixelFormat *fmt;
+	mapSurface = SDL_CreateRGBSurface(SDL_SWSURFACE,800,800,32,0, 0, 0, 0);
+
+
+	fmt=mapSurface->format;
+	
 	Uint32 color = SDL_MapRGBA(fmt, r, g, b,a);
 	// Uint32 color;
-	mapSurface = SDL_CreateRGBSurface(SDL_SWSURFACE,800,800,32,0, 0, 0, 0);
 	SDL_Rect fill;
 	fill.x=0;
 	fill.y=0;
