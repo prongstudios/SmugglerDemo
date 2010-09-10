@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
 	
 	
 	SDL_Surface *overlay = &map();
-	
+	SDL_SetColorKey(overlay, SDL_SRCCOLORKEY,0);
 	Timer fps;
 	int walkFrames = 2;
 	

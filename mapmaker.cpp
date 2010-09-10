@@ -28,7 +28,7 @@ SDL_Surface map()
 	crate.boxsize(100);
 	crate.load("spritemap.png");
 	
-	Uint8 r = 0, g = 0, b =0, a = SDL_ALPHA_TRANSPARENT;
+	Uint8 r = 0, g = 0, b = 0, a = 0;
 	SDL_PixelFormat *fmt;
 	mapSurface = SDL_CreateRGBSurface(SDL_SWSURFACE,800,800,32,0, 0, 0, 0);
 
@@ -38,13 +38,12 @@ SDL_Surface map()
 	Uint32 color = SDL_MapRGBA(fmt, r, g, b,a);
 	// Uint32 color;
 	SDL_Rect fill;
-	fill.x=0;
-	fill.y=0;
-	fill.w=799;
-	fill.h=799;
+	fill.x=800;
+	fill.y=800;
+	fill.w=0;
+	fill.h=0;
 	SDL_FillRect(mapSurface, &fill, color);
-
-	// out << SDL_SetAlpha(mapSurface,SDL_SRCALPHA, 0);
+	cout << SDL_SetAlpha(mapSurface,SDL_SRCALPHA, 0);
 	// mapSurface = IMG_Load("black.png");
 	
 	//SDL_BlitSurface(&crate.image(), NULL, mapSurface, NULL);
