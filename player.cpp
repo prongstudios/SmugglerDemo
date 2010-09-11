@@ -43,6 +43,27 @@ void Player::frameY(int frameY)
 }
 
 
+void Player::setxvel(int newxvel)
+{
+	xvel = newxvel;
+}
+
+void Player::setyvel(int newyvel)
+{
+	yvel = newyvel;
+}
+
+int Player::getxvel()
+{
+	return xvel;
+}
+
+int Player::getyvel()
+{
+	return yvel;
+}
+
+
 
 SDL_Rect Player::location()
 {

@@ -8,6 +8,8 @@
 #include "player.cpp"
 #include "animate.cpp"
 #include "mapmaker.cpp"
+#include "handleinput.cpp"
+
 #include <string>
 
 
@@ -18,9 +20,6 @@ const int SCREEN_HEIGHT = 1024;
 const int SCREEN_BPP = 32;
 const int movementspeed = 2;
 const int walkFrameInterval = 10;
-
-
-
 
 int main(int argc, char *argv[])
 {
@@ -46,7 +45,6 @@ int main(int argc, char *argv[])
 	singleTile.h = 100;
 	singleTile.w = 100;
 	
-	SDL_Event event;
 	
 	
 	
@@ -68,63 +66,10 @@ int main(int argc, char *argv[])
 		fps.start();
 		
 		
-		while (SDL_PollEvent(&event))
-		{
-			// if (event.type==SDL_QUIT){
-			// 	Running=false;
-			// }
-			if (event.type == SDL_KEYDOWN)
-			{
-				switch(event.key.keysym.sym){
-					case SDLK_LEFT:
-						xvel = -movementspeed;
-						break;
-					case SDLK_RIGHT:
-						xvel = movementspeed;
-						break;
-					case SDLK_UP:
-						yvel = -movementspeed;
-						break;
-					case SDLK_DOWN:
-						yvel = movementspeed;
-						break;
-					case SDLK_ESCAPE:
-						quit=true;
-						break;
-					default:
-					// do nothing
-						break;
-				}
-			}
-			if (event.type == SDL_KEYUP)
-			{
-				switch(event.key.keysym.sym){
-					case SDLK_LEFT:
-						xvel = 0;
-						break;
-					case SDLK_RIGHT:
-						xvel = 0;
-						break;
-					case SDLK_UP:
-						yvel = 0;
-						break;
-					case SDLK_DOWN:
-						yvel = 0;
-						break;
-					case SDLK_ESCAPE:
-						quit=true;
-						break;
-					default:
-					// Do nothing
-						break;
-				}
-			}
-			if (event.type == SDL_QUIT)
-			{
-				quit = true;
-			}
-		}
-		walkFrames=animate(xvel, yvel, movementspeed, walkFrames, walkFrameInterval, player1);
+
+		quit = input(player1, movementspeed);
+		
+		walkFrames=animate(player1.getxvel(), player1.getyvel(), movementspeed, walkFrames, walkFrameInterval, player1);
 		SDL_BlitSurface(background, NULL, screen, NULL);
 		
 		SDL_BlitSurface(&player1.image(), &player1.frame(), screen, &player1.location());

@@ -9,10 +9,18 @@ private:
 	SDL_Rect frames;
 	std::string filename;
 	SDL_Surface *sprite;
+	int xvel;
+	int yvel;
 	
 public:
 	
 	Player(std::string filename);
+	
+	void setxvel(int newxvel);
+	void setyvel(int newyvel);
+	int getxvel();
+	int getyvel();
+	
 	void coordX(int X);
 	void coordY(int Y);
 	void box_size(int boxSize);
