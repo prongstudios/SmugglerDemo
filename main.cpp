@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 	SDL_Surface *background;
 	
 	
-	Player player1("character.png");
+	Player player1("ana.png");
 	
 
 	SDL_Rect singleTile;
@@ -64,11 +64,7 @@ int main(int argc, char *argv[])
 	while(!quit){
 		
 		fps.start();
-		
-		
-
 		quit = input(player1, movementspeed);
-		
 		walkFrames=animate(player1.getxvel(), player1.getyvel(), movementspeed, walkFrames, walkFrameInterval, player1);
 		SDL_BlitSurface(background, NULL, screen, NULL);
 		
