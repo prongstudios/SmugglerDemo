@@ -12,6 +12,8 @@ Player::Player(std::string filename)
 	frames.y=0;
 	frames.w=100;
 	frames.h=100;
+	xvel = 0;
+	yvel = 0;
 }
 
 void Player::coordX(int X)
