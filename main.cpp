@@ -9,6 +9,7 @@
 #include "animate.cpp"
 #include "mapmaker.cpp"
 #include "handleinput.cpp"
+#include "imageloader.cpp"
 
 #include <string>
 
@@ -23,44 +24,35 @@ const int walkFrameInterval = 10;
 
 int main(int argc, char *argv[])
 {
+	
+	// Erectin' a display
 	SDL_Surface *screen;
 	SDL_Init(SDL_INIT_EVERYTHING);
     screen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_HWSURFACE);
+	
+	
+	
 	SDL_WM_SetCaption("Smuggler Demo", "Smuggler Demo");
 	bool quit = false;
 	// Rendering surfaces
 
-	SDL_Surface *preBackground;
 	
-	SDL_Surface *background;
+	// Set background surface to display optimized
+	SDL_Surface *background = &load_image("backimage.png");
 	
-	
+	// Set player's image to 
 	Player player1("ana.png");
 	
-
-	SDL_Rect singleTile;
-	
-	singleTile.x = 0;
-	singleTile.y = 0;
-	singleTile.h = 100;
-	singleTile.w = 100;
-	
-	
-	
-	
-	int xvel = 0, yvel = 0;
-	
-	
+	// Load overlay surface and set transparency color to 0
 	SDL_Surface *overlay = &map();
 	SDL_SetColorKey(overlay, SDL_SRCCOLORKEY,0);
+	
+	
+	// Instantiate timer object
 	Timer fps;
+	
 	int walkFrames = 2;
 	
-    preBackground = IMG_Load("backimage.png");
-
-	background = SDL_DisplayFormat(preBackground);
-	SDL_FreeSurface(preBackground);
-
 	while(!quit){
 		
 		fps.start();
@@ -79,7 +71,6 @@ int main(int argc, char *argv[])
 	}
 	
 	}
-	SDL_FreeSurface(background);
     SDL_Quit();
 
 }
