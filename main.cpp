@@ -54,17 +54,33 @@ int main(int argc, char *argv[])
 	int walkFrames = 2;
 	
 	while(!quit){
-		
+		// Start the timer for frame rate limiting
 		fps.start();
+		
+		// The input handling function returns a bool. While quit == false, the game will continue to run
 		quit = input(player1, movementspeed);
+		
+		// This function animates through the cycle, using an iterating number that triggers the different frames
+		// TODO: The walkframes integer should be tucked into the object it is manipulating, in this case, player.
 		walkFrames=animate(player1.getxvel(), player1.getyvel(), movementspeed, walkFrames, walkFrameInterval, player1);
+		
+		// Renders the background on the bottom
 		SDL_BlitSurface(background, NULL, screen, NULL);
 		
+		// Puts the player underneath the overlay, which is basically the map
 		SDL_BlitSurface(&player1.image(), &player1.frame(), screen, &player1.location());
+		
+		// Renders the map
 		SDL_BlitSurface(overlay, NULL, screen, NULL);
+		
+		// Renders it all to the display
 		SDL_Flip(screen);
 
-		printf("Frames per second: %d\n", 1000/fps.get_ticks());
+		
+		// For performance measuring purposes, this line spits out the max framerate possible if this rate of animation is sustained.
+		printf("Max Frames per second: %d\n", 1000/fps.get_ticks());
+	
+	// Hard locks the frame rate to 60 frames per second or less
 	if(fps.get_ticks() < 1000 / FPS)
 	{
 		SDL_Delay ((1000/FPS) - fps.get_ticks());
