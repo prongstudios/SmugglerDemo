@@ -14,6 +14,7 @@ Player::Player(std::string filename)
 	frames.h=100;
 	xvel = 0;
 	yvel = 0;
+	SDL_Rect speech_loc;
 }
 
 void Player::coordX(int X)
@@ -72,6 +73,13 @@ SDL_Rect Player::location()
 	return coords;
 }
 
+SDL_Rect Player::speech_bubble()
+{
+	speech_loc.x = coords.x + 65;
+	speech_loc.y = coords.y - 25;
+	return speech_loc;
+}
+
 SDL_Rect Player::frame()
 {
 	return frames;
@@ -81,3 +89,4 @@ SDL_Surface Player::image()
 {
 	return *sprite;
 }
+

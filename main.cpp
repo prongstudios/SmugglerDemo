@@ -24,7 +24,6 @@ const int walkFrameInterval = 10;
 
 int main(int argc, char *argv[])
 {
-	
 	// Erectin' a display
 	SDL_Surface *screen;
 	SDL_Init(SDL_INIT_EVERYTHING);
@@ -34,6 +33,26 @@ int main(int argc, char *argv[])
 	
 	SDL_WM_SetCaption("Smuggler Demo", "Smuggler Demo");
 	bool quit = false;
+	
+	
+	// Setting up text
+	TTF_Font* Font=NULL;
+	SDL_Surface* TextSurface = NULL;
+	TTF_Init();
+	Font=TTF_OpenFont("DejaVuSansMono.ttf",20);
+	SDL_Color color;
+	color.r=255;
+	color.g=255;
+	color.b=255;
+	TextSurface=TTF_RenderText_Solid(Font,"I love poop!!",color);
+	
+	
+	
+	
+	
+	
+	
+	
 	// Rendering surfaces
 
 	
@@ -72,6 +91,9 @@ int main(int argc, char *argv[])
 		
 		// Renders the map
 		SDL_BlitSurface(overlay, NULL, screen, NULL);
+		
+		// Renders the text
+		SDL_BlitSurface(TextSurface, NULL, screen, &player1.speech_bubble());
 		
 		// Renders it all to the display
 		SDL_Flip(screen);

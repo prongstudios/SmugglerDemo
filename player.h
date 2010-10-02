@@ -11,6 +11,7 @@ private:
 	SDL_Surface *sprite;
 	int xvel;
 	int yvel;
+	SDL_Rect speech_loc;
 	
 public:
 	
@@ -27,6 +28,7 @@ public:
 	void frameX(int frameX);
 	void frameY(int frameY);
 	SDL_Rect location();
+	SDL_Rect speech_bubble();
 	SDL_Rect frame();
 	SDL_Surface image();
 	
