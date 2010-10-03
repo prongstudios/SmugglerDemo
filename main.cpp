@@ -37,21 +37,17 @@ int main(int argc, char *argv[])
 	
 	// Setting up text
 	TTF_Font* Font=NULL;
-	SDL_Surface* TextSurface = NULL;
 	TTF_Init();
-	Font=TTF_OpenFont("DejaVuSansMono.ttf",20);
+	SDL_Surface* TextSurface = NULL;
+	
+	
+	Font=TTF_OpenFont("DejaVuSansMono.ttf",16);
 	SDL_Color color;
 	color.r=255;
 	color.g=255;
 	color.b=255;
-	TextSurface=TTF_RenderText_Solid(Font,"I love poop!!",color);
-	
-	
-	
-	
-	
-	
-	
+	int FontSize = 10;
+	bool growing = true;
 	
 	// Rendering surfaces
 
@@ -93,10 +89,34 @@ int main(int argc, char *argv[])
 		SDL_BlitSurface(overlay, NULL, screen, NULL);
 		
 		// Renders the text
+		if (growing == true)
+		{
+			FontSize ++;
+		}
+		else
+		{
+			FontSize --;
+		}
+						
+		if (FontSize == 25)
+		{
+			growing = false;
+		}
+		if (FontSize == 1)
+		{
+			growing = true;
+		}
+				
+		Font=TTF_OpenFont("DejaVuSansMono.ttf",FontSize);
+		TextSurface=TTF_RenderText_Solid(Font,"I love poop!!",color);
 		SDL_BlitSurface(TextSurface, NULL, screen, &player1.speech_bubble());
+		TTF_CloseFont(Font);
+		SDL_FreeSurface(TextSurface);
+		
 		
 		// Renders it all to the display
 		SDL_Flip(screen);
+
 
 		
 		// For performance measuring purposes, this line spits out the max framerate possible if this rate of animation is sustained.
