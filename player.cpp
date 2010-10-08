@@ -12,8 +12,8 @@ Player::Player(std::string filename)
 	frames.y=0;
 	frames.w=100;
 	frames.h=100;
-	xvel = 0;
-	yvel = 0;
+	velx = 0;
+	vely = 0;
 	SDL_Rect speech_loc;
 }
 
@@ -46,24 +46,24 @@ void Player::frameY(int frameY)
 }
 
 
-void Player::setxvel(int newxvel)
+int Player::xvel(int newxvel)
 {
-	xvel = newxvel;
+	velx = newxvel;
 }
 
-void Player::setyvel(int newyvel)
+int Player::yvel(int newyvel)
 {
-	yvel = newyvel;
+	vely = newyvel;
 }
 
-int Player::getxvel()
+int Player::xvel()
 {
-	return xvel;
+	return velx;
 }
 
-int Player::getyvel()
+int Player::yvel()
 {
-	return yvel;
+	return vely;
 }
 
 

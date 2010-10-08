@@ -12,16 +12,16 @@ bool input(Player &player, int movementspeed)
 		{
 			switch(event.key.keysym.sym){
 				case SDLK_LEFT:
-					player.setxvel(-movementspeed);
+					player.xvel(-movementspeed);
 					break;
 				case SDLK_RIGHT:
-					player.setxvel(movementspeed);
+					player.xvel(movementspeed);
 					break;
 				case SDLK_UP:
-					player.setyvel(-movementspeed);
+					player.yvel(-movementspeed);
 					break;
 				case SDLK_DOWN:
-					player.setyvel(movementspeed);
+					player.yvel(movementspeed);
 					break;
 				case SDLK_ESCAPE:
 					quit=true;
@@ -35,16 +35,16 @@ bool input(Player &player, int movementspeed)
 		{
 			switch(event.key.keysym.sym){
 				case SDLK_LEFT:
-					player.setxvel(0);
+					player.xvel(0);
 					break;
 				case SDLK_RIGHT:
-					player.setxvel(0);
+					player.xvel(0);
 					break;
 				case SDLK_UP:
-					player.setyvel(0);
+					player.yvel(0);
 					break;
 				case SDLK_DOWN:
-					player.setyvel(0);
+					player.yvel(0);
 					break;
 				case SDLK_ESCAPE:
 					quit=true;

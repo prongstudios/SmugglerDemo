@@ -9,18 +9,18 @@ private:
 	SDL_Rect frames;
 	std::string filename;
 	SDL_Surface *sprite;
-	int xvel;
-	int yvel;
+	int velx;
+	int vely;
 	SDL_Rect speech_loc;
 	
 public:
 	
 	Player(std::string filename);
 	
-	void setxvel(int newxvel);
-	void setyvel(int newyvel);
-	int getxvel();
-	int getyvel();
+	int xvel(int newxvel);
+	int yvel(int newyvel);
+	int xvel();
+	int yvel();
 	
 	void coordX(int X);
 	void coordY(int Y);

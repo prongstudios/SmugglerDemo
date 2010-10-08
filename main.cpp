@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 		
 		// This function animates through the cycle, using an iterating number that triggers the different frames
 		// TODO: The walkframes integer should be tucked into the object it is manipulating, in this case, player.
-		walkFrames=animate(player1.getxvel(), player1.getyvel(), movementspeed, walkFrames, walkFrameInterval, player1);
+		walkFrames=animate(player1.xvel(), player1.yvel(), movementspeed, walkFrames, walkFrameInterval, player1);
 		
 		// Renders the background on the bottom
 		SDL_BlitSurface(background, NULL, screen, NULL);
