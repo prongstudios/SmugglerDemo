@@ -59,6 +59,8 @@ int main(int argc, char *argv[])
 	// Set player's image to 
 	Player player1("ana.png");
 	Player player2("character.png");
+	player2.coordX(500);
+	player2.coordY(500);
 	
 	// Load overlay surface and set transparency color to 0
 	SDL_Surface *overlay = &map();
@@ -117,7 +119,7 @@ int main(int argc, char *argv[])
 				
 		Font=TTF_OpenFont("DejaVuSansMono.ttf",FontSize);
 		TextSurface=TTF_RenderText_Solid(Font,"I love poop!!",color);
-		SDL_BlitSurface(TextSurface, NULL, screen, &player1.speech_bubble());
+		SDL_BlitSurface(TextSurface, NULL, screen, &player2.speech_bubble());
 		TTF_CloseFont(Font);
 		SDL_FreeSurface(TextSurface);
 		
