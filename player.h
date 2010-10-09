@@ -22,6 +22,11 @@ public:
 	int xvel();
 	int yvel();
 	
+	enum states {PURSUIT, IDLE};
+	
+	void ai(Player& target);
+	
+	
 	void coordX(int X);
 	void coordY(int Y);
 	void box_size(int boxSize);
@@ -32,4 +37,5 @@ public:
 	SDL_Rect frame();
 	SDL_Surface image();
 	
+	~Player();
 };

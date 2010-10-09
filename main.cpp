@@ -6,6 +6,7 @@
 #include "object.cpp"
 #include "player.h"
 #include "player.cpp"
+#include "ai.cpp"
 #include "animate.cpp"
 #include "mapmaker.cpp"
 #include "handleinput.cpp"
@@ -57,6 +58,7 @@ int main(int argc, char *argv[])
 	
 	// Set player's image to 
 	Player player1("ana.png");
+	Player player2("character.png");
 	
 	// Load overlay surface and set transparency color to 0
 	SDL_Surface *overlay = &map();
@@ -84,6 +86,12 @@ int main(int argc, char *argv[])
 		
 		// Puts the player underneath the overlay, which is basically the map
 		SDL_BlitSurface(&player1.image(), &player1.frame(), screen, &player1.location());
+
+
+		// Puts the NPC underneath the overlay
+		player2.ai(player1);
+		walkFrames=animate(player2.xvel(), player2.yvel(), movementspeed/2, walkFrames, walkFrameInterval, player2);
+		SDL_BlitSurface(&player2.image(), &player2.frame(), screen, &player2.location());
 		
 		// Renders the map
 		SDL_BlitSurface(overlay, NULL, screen, NULL);

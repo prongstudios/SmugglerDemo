@@ -17,6 +17,11 @@ Player::Player(std::string filename)
 	SDL_Rect speech_loc;
 }
 
+Player::~Player()
+{
+	SDL_FreeSurface(sprite);
+}
+
 void Player::coordX(int X)
 {
 	coords.x += X;
