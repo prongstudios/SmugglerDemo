@@ -1,18 +1,5 @@
-#include "SDL.h"
-#include "SDL_image.h"
-#include "SDL_ttf.h"
-#include "timing.h"
-#include "object.h"
-#include "object.cpp"
-#include "player.h"
-#include "player.cpp"
-#include "ai.cpp"
-#include "animate.cpp"
-#include "mapmaker.cpp"
-#include "handleinput.cpp"
-#include "imageloader.cpp"
+#include "includes.h"
 
-#include <string>
 
 
 // Game constraints
@@ -54,7 +41,11 @@ int main(int argc, char *argv[])
 
 	
 	// Set background surface to display optimized
-	SDL_Surface *background = &load_image("backimage.png");
+	SDL_Surface *background;
+	SDL_Surface *oldface;
+	oldface = IMG_Load("backimage.png");
+	background = SDL_DisplayFormat(oldface);
+	SDL_FreeSurface(oldface);
 	
 	// Set player's image to 
 	Player player1("ana.png");
