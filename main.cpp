@@ -68,11 +68,11 @@ int main(int argc, char *argv[])
 		fps.start();
 		
 		// The input handling function returns a bool. While quit == false, the game will continue to run
-		quit = input(player1, movementspeed);
+		quit = input(&player1, movementspeed);
 		
 		// This function animates through the cycle, using an iterating number that triggers the different frames
 		// TODO: The walkframes integer should be tucked into the object it is manipulating, in this case, player.
-		walkFrames=animate(player1.xvel(), player1.yvel(), movementspeed, walkFrames, walkFrameInterval, player1);
+		walkFrames=animate(player1.xvel(), player1.yvel(), movementspeed, walkFrames, walkFrameInterval, &player1);
 		
 		// Renders the background on the bottom
 		SDL_BlitSurface(background, NULL, screen, NULL);
@@ -83,7 +83,7 @@ int main(int argc, char *argv[])
 
 		// Puts the NPC underneath the overlay
 		player2.ai(player1);
-		walkFrames=animate(player2.xvel(), player2.yvel(), movementspeed/2, walkFrames, walkFrameInterval, player2);
+		walkFrames=animate(player2.xvel(), player2.yvel(), movementspeed/2, walkFrames, walkFrameInterval, &player2);
 		SDL_BlitSurface(&player2.image(), &player2.frame(), screen, &player2.location());
 		
 		// Renders the map
@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
 
 		
 		// For performance measuring purposes, this line spits out the max framerate possible if this rate of animation is sustained.
-		printf("Max Frames per second: %d\n", 1000/fps.get_ticks());
+		// printf("Max Frames per second: %d\n", 1000/fps.get_ticks());
 	
 	// Hard locks the frame rate to 60 frames per second or less
 	if(fps.get_ticks() < 1000 / FPS)

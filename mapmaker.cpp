@@ -43,11 +43,7 @@ SDL_Surface map()
 	fill.w=0;
 	fill.h=0;
 	SDL_FillRect(mapSurface, &fill, color);
-	cout << SDL_SetAlpha(mapSurface,SDL_SRCALPHA, 0);
-	// mapSurface = IMG_Load("black.png");
-	
-	//SDL_BlitSurface(&crate.image(), NULL, mapSurface, NULL);
-	// mapSurface = &crate.image();
+	SDL_SetAlpha(mapSurface,SDL_SRCALPHA, 0);
 	
 	for (int x =0; x <8; x++)
 	{
@@ -60,19 +56,18 @@ SDL_Surface map()
 			int tilez = mapArray[x][y];
 			SDL_Rect wat = tilePicker(tilez);
 			SDL_Rect wtf = crate.rect();
-			cout << "Tile: " << mapArray[x][y] << " Source: (" << wat.x << "," << wat.y << ") Dest: (" << wtf.x << "," << wtf.y << ") ";
+			// cout << "Tile: " << mapArray[x][y] << " Source: (" << wat.x << "," << wat.y << ") Dest: (" << wtf.x << "," << wtf.y << ") ";
 			SDL_BlitSurface(&crate.image(), &wat, mapSurface, &wtf);
 			blockx+=100;
 			crate.x(blockx);
 		};
-		cout << "\n";
+		//cout << "\n";
 		blocky+=100;
 		crate.y(blocky);
 		blockx=0;
 		crate.x(blockx);
 	};
-	// SDL_Flip(mapSurface);
-	// SDL_DisplayFormatAlpha(mapSurface);
+
 	SDL_SetAlpha(mapSurface,0 ,128);
 	return *mapSurface;
 

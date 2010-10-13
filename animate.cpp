@@ -1,36 +1,36 @@
-int animate(int xvel, int yvel, int movementspeed, int walkFrames, int walkFrameInterval, Player& object)
+int animate(int xvel, int yvel, int movementspeed, int walkFrames, int walkFrameInterval, Player* object)
 {
 	
 	
-	object.coordX(xvel);
-	object.coordY(yvel);
+	object->coordX(xvel);
+	object->coordY(yvel);
 	
 
 	if (walkFrames < walkFrameInterval)
 	{
-		object.frameY(100);
+		object->frameY(100);
 	}
 	
 	if ((walkFrames < walkFrameInterval*2) && (walkFrames > walkFrameInterval))
 	{
-		object.frameY(200);
+		object->frameY(200);
 	}
 	
 	if (yvel == movementspeed)
 	{
-		object.frameX(0);
+		object->frameX(0);
 	}
 	if (yvel == -movementspeed)
 	{
-		object.frameX(100);
+		object->frameX(100);
 	}
 	if (xvel == movementspeed)
 	{
-		object.frameX(200);
+		object->frameX(200);
 	}
 	if (xvel == -movementspeed)
 	{
-		object.frameX(300);
+		object->frameX(300);
 	}
 	if (walkFrames == (walkFrameInterval*2))
 	{
@@ -38,7 +38,7 @@ int animate(int xvel, int yvel, int movementspeed, int walkFrames, int walkFrame
 	}
 	if ((xvel==0) && (yvel == 0))
 	{
-		object.frameY(0);
+		object->frameY(0);
 	}
 	
 	walkFrames +=1;
