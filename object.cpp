@@ -27,7 +27,7 @@ void Object::load(std::string filename)
 	SDL_Surface *oldface;
 	oldface = IMG_Load(filename.c_str());
 	surface = SDL_DisplayFormatAlpha(oldface);
-	cout << SDL_SetAlpha(surface,SDL_SRCALPHA, 0);
+	// cout << SDL_SetAlpha(surface,SDL_SRCALPHA, 0);
 	
 	SDL_FreeSurface(oldface);
 }
