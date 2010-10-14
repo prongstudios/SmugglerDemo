@@ -11,5 +11,7 @@
 #include "mapmaker.cpp"
 #include "handleinput.cpp"
 #include "imageloader.cpp"
+#include "collision.cpp"
+
 
 #include <string>
