@@ -22,6 +22,17 @@ Player::~Player()
 	SDL_FreeSurface(sprite);
 }
 
+int Player::coordX()
+{
+	return coords.x;
+}
+
+int Player::coordY()
+{
+	return coords.y;
+}
+
+
 void Player::coordX(int X)
 {
 	coords.x += X;

@@ -21,4 +21,6 @@ THE SOFTWARE.
 */
 
 
-bool collision(SDL_Surface* surfacea, int ax, int ay, int asize, SDL_Surface* surfaceb, int bx, int by, int asize);
+bool collision(SDL_Surface* surfacea, int ax, int ay, int asize, SDL_Surface* surfaceb, int bx, int by, int bsize);
+int bound_max(int a, int b);
+int bound_min(int a, int b);

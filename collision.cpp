@@ -1,19 +1,29 @@
 #include "collision.h"
 
 
-bool collision(SDL_Surface* surfacea, int ax, int ay, int asize, SDL_Surface* surfaceb, int bx, int by, int asize)
+bool collision(SDL_Surface* surfacea, int ax, int ay, int asize, SDL_Surface* surfaceb, int bx, int by, int bsize)
 {
-	// if the highest point of surfacea is lower than the lowest point of surfaceb, or the highest point of surfaceb is lower than the lowest point of surfacea, there is no collision.
-	
-	
-	return false;
-	
-	
 	//  if the righmost point of surface a is further left than the leftmost point of surfaceb, or the rightmost point of surface b is further left than the leftmost point of surface a, there is no collision. 
 	
+	int aRight = ax+asize;
+	int bRight = bx+bsize;
 	
-	return false;
+	if ((ax > bRight) || (bx > aRight))
+	{
+		return false;
+	}	
 	
+	
+	// if the highest point of surfacea is lower than the lowest point of surfaceb, or the highest point of surfaceb is lower than the lowest point of surfacea, there is no collision.
+	
+	int aBottom = ay+asize;
+	int bBottom = by+bsize;
+	
+	if ((ay > bBottom) || (by > aBottom))
+	{
+		return false;
+	}
+		
 	
 	//   if none of those is true, then there is a collision, and our function returns true
 	
@@ -22,3 +32,20 @@ bool collision(SDL_Surface* surfacea, int ax, int ay, int asize, SDL_Surface* su
 }
 
 
+int bound_max(int a, int b)
+{
+	if (a > b)
+	{
+		return a;
+	}
+	return b;
+}
+
+int bound_min(int a, int b)
+{
+	if (a < b)
+	{
+		return a;
+	}
+	return b;
+}

@@ -26,7 +26,8 @@ public:
 	
 	void ai(Player& target);
 	
-	
+	int coordX();
+	int coordY();
 	void coordX(int X);
 	void coordY(int Y);
 	void box_size(int boxSize);

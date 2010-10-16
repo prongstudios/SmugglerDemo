@@ -80,11 +80,28 @@ int main(int argc, char *argv[])
 		// Puts the player underneath the overlay, which is basically the map
 		SDL_BlitSurface(&player1.image(), &player1.frame(), screen, &player1.location());
 
+		// Checks for collisions
+		if (collision(&player1.image(), player1.coordX(), player1.coordY(), 100, &player2.image(), player2.coordX(), player2.coordY(), 100))
+		{
+			cout << "COLLIDE!\n";
+			player2.xvel(0);
+			player2.yvel(0);
+		}
+		else
+		{
+			cout << "NO COLLIDE!\n";
+			player2.ai(player1);
+		}
+
 
 		// Puts the NPC underneath the overlay
-		player2.ai(player1);
+
 		walkFrames=animate(player2.xvel(), player2.yvel(), movementspeed/2, walkFrames, walkFrameInterval, &player2);
 		SDL_BlitSurface(&player2.image(), &player2.frame(), screen, &player2.location());
+		
+		
+
+		
 		
 		// Renders the map
 		SDL_BlitSurface(overlay, NULL, screen, NULL);
