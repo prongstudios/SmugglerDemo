@@ -49,3 +49,22 @@ int bound_min(int a, int b)
 	}
 	return b;
 }
+
+int get_distance(Player* p1, Player* p2)
+{
+	int xdist = p1->coordX() - p2->coordX();
+	int ydist = p1->coordY() - p2->coordY();
+	
+	if (xdist < 0)
+	{
+		xdist = xdist * -1;
+	}
+	if (ydist < 0)
+	{
+		ydist = ydist * -1;
+	}
+	
+	cout << xdist << " "<< ydist << " ";
+	int dist = bound_max(xdist, ydist);
+	return dist;
+}

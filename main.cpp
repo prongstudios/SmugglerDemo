@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 	SDL_Init(SDL_INIT_EVERYTHING);
     screen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_HWSURFACE);
 	
-	
+	int deviant = 500;
 	
 	SDL_WM_SetCaption("Smuggler Demo", "Smuggler Demo");
 	bool quit = false;
@@ -34,8 +34,7 @@ int main(int argc, char *argv[])
 	color.r=255;
 	color.g=255;
 	color.b=255;
-	int FontSize = 10;
-	bool growing = true;
+	int FontSize;
 	
 	// Rendering surfaces
 
@@ -52,6 +51,7 @@ int main(int argc, char *argv[])
 	Player player2("character.png");
 	player2.coordX(500);
 	player2.coordY(500);
+	int distance;
 	
 	// Load overlay surface and set transparency color to 0
 	SDL_Surface *overlay = &map();
@@ -107,30 +107,31 @@ int main(int argc, char *argv[])
 		SDL_BlitSurface(overlay, NULL, screen, NULL);
 		
 		// Renders the text
-		if (growing == true)
+
+		distance = get_distance(&player1, &player2);
+		cout << distance <<" ";
+		cout << FontSize << " ";
+		
+		if (distance != 0)
 		{
-			FontSize ++;
+			FontSize = (deviant/distance)*(deviant/distance);
 		}
-		else
+		if (FontSize > 32)
 		{
-			FontSize --;
+			FontSize = 32;
 		}
-						
-		if (FontSize == 25)
+		
+		cout << FontSize;		
+		
+		
+		if (FontSize > 2)
 		{
-			growing = false;
-		}
-		if (FontSize == 1)
-		{
-			growing = true;
-		}
-				
 		Font=TTF_OpenFont("DejaVuSansMono.ttf",FontSize);
 		TextSurface=TTF_RenderText_Solid(Font,"I love poop!!",color);
 		SDL_BlitSurface(TextSurface, NULL, screen, &player2.speech_bubble());
 		TTF_CloseFont(Font);
 		SDL_FreeSurface(TextSurface);
-		
+		}
 		
 		// Renders it all to the display
 		SDL_Flip(screen);
