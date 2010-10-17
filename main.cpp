@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
 	
 	// Set player's image to 
 	Player player1("ana.png");
-	Player player2("character.png");
+	Player player2("Severin.png");
 	player2.coordX(500);
 	player2.coordY(500);
 	int distance;
@@ -127,7 +127,7 @@ int main(int argc, char *argv[])
 		if (FontSize > 2)
 		{
 		Font=TTF_OpenFont("DejaVuSansMono.ttf",FontSize);
-		TextSurface=TTF_RenderText_Solid(Font,"I love poop!!",color);
+		TextSurface=TTF_RenderText_Solid(Font,"I'm gonna get ya!!!",color);
 		SDL_BlitSurface(TextSurface, NULL, screen, &player2.speech_bubble());
 		TTF_CloseFont(Font);
 		SDL_FreeSurface(TextSurface);
